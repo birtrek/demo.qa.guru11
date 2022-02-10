@@ -1,4 +1,4 @@
-package junit;
+package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -27,16 +27,13 @@ public class TextBoxTest {
         $("#permanentAddress").setValue("street");
         $("#submit").click();
 
-        $("#output").shouldHave((text("Vova")),text("Vova@mail.ru"),text("Moscow"),text("street"));
+        $("#output").shouldHave(text("Vova"),text("Vova@mail.ru"),text("Moscow"),text("street"));
+
         //scrollTo() проскролить до
 
         $("#name").shouldHave(text("Vova"));
-        $("#currentAddress").shouldHave(text("Moscow")); //wrong
-        $("#currentAddress",1).shouldHave(text("Moscow"));//wrong
+        $("#currentAddress").shouldHave(text("Moscow"));
+        $("#currentAddress",1).shouldHave(text("Moscow"));
         $("#output").$("#currentAddress").shouldHave(text("Moscow"));
-
-        $("submit").click();
-
-
     }
 }
