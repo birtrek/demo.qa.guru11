@@ -27,13 +27,14 @@ public class TextBoxTest {
         $("#permanentAddress").setValue("street");
         $("#submit").click();
 
-        $("#output").shouldHave(text("Vova"),text("Vova@mail.ru"),text("Moscow"),text("street"));
+        $("#output").shouldHave(text("Vova"), text("Vova@mail.ru"), text("Moscow"), text("street"));
 
         //scrollTo() проскролить до
 
         $("#name").shouldHave(text("Vova"));
-        $("#currentAddress").shouldHave(text("Moscow"));
-        $("#currentAddress",1).shouldHave(text("Moscow"));
+        $("#email").shouldHave(text("Vova@mail.ru"));
+   //     $("#currentAddress").shouldHave(text("Moscow"));
+   //     $("#permanentAddress").shouldHave(text("street"));
         $("#output").$("#currentAddress").shouldHave(text("Moscow"));
     }
 }
