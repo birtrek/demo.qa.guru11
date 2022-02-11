@@ -35,7 +35,7 @@ public class HomeWorkTest {
         $(byText("6")).click();
         $("#subjectsInput").setValue("Biology").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/java/data/123.jpg"));
+        $("#uploadPicture").uploadFile(new File("src/test/resources/123.jpg"));
         $("#currentAddress").setValue("Moscow");
         $("#state").scrollTo().click();
         $("#stateCity-wrapper").$(byText("Haryana")).click();
