@@ -30,7 +30,7 @@ public class HomeWorkTest {
         $(byText("Male")).click();
         $("#userNumber").setValue("7123456789");
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("July"); // я хотел очистить поле календаря и подставить заготовленную маску 10 Feb 2022
+        $(".react-datepicker__month-select").selectOption("July");
         $(".react-datepicker__year-select").selectOption("2010");
         $(byText("6")).click();
         $("#subjectsInput").setValue("Biology").pressEnter();
