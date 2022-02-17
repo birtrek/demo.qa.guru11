@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -55,8 +56,9 @@ public class RegistrationFormTestspageObject {
         registrationPage.setHobbiesWrapper("Sports");
         registrationPage.setUploadPicture("uploadFile");
         registrationPage.setCurrentAddress("Moscow");
-        registrationPage.setCity("Haryana");
-        registrationPage.setState("Panipat");
+        registrationPage.setState("Haryana");
+        registrationPage.setCity("Panipat");
+        registrationPage.submitForm();
 
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));

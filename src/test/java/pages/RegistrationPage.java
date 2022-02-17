@@ -25,8 +25,9 @@ public class RegistrationPage {
             hobbiesWrapperInput=$("#hobbiesWrapper"),
             setUploadPicture=$("#uploadPicture"),
             setCurrentAddressInput=$("#currentAddress"),
-            setstateCityWrapperInput=$("#state"),
-            setstateCityWrapperInput1=$("#city");
+            setStateInput=$("#state"),
+            setCityInput=$("#city"),
+            setClickInput=$("#submit");
 
 
 
@@ -40,15 +41,16 @@ public class RegistrationPage {
     }
 
     public void setLastName(String lastName) {
+
         lastNameInput.setValue(lastName);
     }
 
     public void setUserEmail (String userEmail){
+
         userEmailInput.setValue(userEmail);
     }
 
     public void typeGender(String gender){
-        //userGenderInput.setValue(userGender);
         $(byText(gender)).click();
     }
 
@@ -63,7 +65,7 @@ public class RegistrationPage {
     }
 
     public void setSubjectsInput (String subjectsInput){
-        userSubjectsInput.setValue(subjectsInput);
+        userSubjectsInput.setValue(subjectsInput).pressEnter();
     }
     public void setHobbiesWrapper (String setHobbiesWrapper){
         $(byText(setHobbiesWrapper)).click();
@@ -73,37 +75,24 @@ public class RegistrationPage {
         setUploadPicture.uploadFile(new File("src/test/resources/123.jpg"));
 
     }
-    public void setCurrentAddress (String currentAddressInput){
-        setCurrentAddressInput.setValue(currentAddressInput);
+    public void setCurrentAddress (String currentAddress){
+        setCurrentAddressInput.setValue(currentAddress);
     }
 
-    public void setState (String stateCityWrapperInput){
-        setstateCityWrapperInput.setValue(stateCityWrapperInput);
-    }
-    public void setCity (String stateCityWrapperInput1){
-        setstateCityWrapperInput1.setValue(stateCityWrapperInput1);
-
+    public void setState (String state){
+        $("#state").scrollTo();
+        setStateInput.click();
+        $(byText(state)).click();
     }
 
+    public void setCity (String city) {
+        setCityInput.click();
+        $(byText(city)).click();
+    }
 
-
-
-
-
-//    }public void checkForm(String fieldName) {
-//        $(".table-responsive").shouldHave(
-//                text("Student Name " + "Vova" + " " + "Olegovich"),
-//                text("Student Email " + "Vova@mail.ru"),
-//                text("Gender " + "Male"),
-//                text("Mobile " + "7123456789"),
-//                text("Date of Birth " + "06 July,2010"),
-//                text("Subjects " + "Biology"),
-//                text("Hobbies " + "Sports"),
-//                text("Picture " + "123.jpg"),
-//                text("Address " + "Moscow"),
-//                text("State and City " + "Haryana" + " " + "Panipat"));
-//    }
-
+    public void submitForm() {
+        setClickInput.click();
+    }
 
 
 }
