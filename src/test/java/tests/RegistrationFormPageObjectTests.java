@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -16,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 //Поля и методы, объявленные с модификатором public,
 //видны другим классам из текущего пакета и из внешних пакетов.
 //Class
-public class RegistrationFormTestspageObject {
+public class RegistrationFormPageObjectTests {
     //создали объект класса RegistrationPage с помощью оператора new
     RegistrationPage registrationPage = new RegistrationPage();
     //создали приватный класс стринг со значением Vova
@@ -59,10 +58,13 @@ public class RegistrationFormTestspageObject {
         registrationPage.setState("Haryana");
         registrationPage.setCity("Panipat");
         registrationPage.submitForm();
+        //Проверяем ожидаемый результат
+        registrationPage.checkTable("Thanks for submitting the form");
 
+                //shouldHave(text("Thanks for submitting the form")
 
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(
+        //$("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        registrationPage.checkForm(
                 text("Student Name " + "Vova" + " " + "Olegovich"),
                 text("Student Email " + "Vova@mail.ru"),
                 text("Gender " + "Male"),

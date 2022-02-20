@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
@@ -11,10 +12,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
-
+    //компоненты
     CalendarComponent calendarComponent = new CalendarComponent();
 
-    // перечисляем переменные селектора
+    // перечисляем переменные селектора (локаторы)
     private SelenideElement
             lastNameInput =$("#lastName"),
             userEmailInput =$("#userEmail"),
@@ -28,6 +29,8 @@ public class RegistrationPage {
             setStateInput=$("#state"),
             setCityInput=$("#city"),
             setClickInput=$("#submit");
+
+
 
 
 
@@ -64,8 +67,8 @@ public class RegistrationPage {
         calendarComponent.setBirthDate(day,month,year);
     }
 
-    public void setSubjectsInput (String subjectsInput){
-        userSubjectsInput.setValue(subjectsInput).pressEnter();
+    public void setSubjectsInput (String subjects){
+        userSubjectsInput.setValue(subjects).pressEnter();
     }
     public void setHobbiesWrapper (String setHobbiesWrapper){
         $(byText(setHobbiesWrapper)).click();
@@ -92,6 +95,14 @@ public class RegistrationPage {
 
     public void submitForm() {
         setClickInput.click();
+    }
+
+    public void checkTable(String checkTable){
+        $("#example-modal-sizes-title-lg").shouldHave(text(checkTable));
+    }
+
+    public void checkForm (String checkForm){
+        $(".table-responsive").shouldHave(checkForm);
     }
 
 
