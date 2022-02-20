@@ -70,12 +70,12 @@ public class RegistrationPage {
     public void setSubjectsInput (String subjects){
         userSubjectsInput.setValue(subjects).pressEnter();
     }
-    public void setHobbiesWrapper (String setHobbiesWrapper){
-        $(byText(setHobbiesWrapper)).click();
+    public void setHobbiesWrapper (String hobbiesWrapper){
+        $(byText(hobbiesWrapper)).click();
     }
 
-    public void setUploadPicture(String uploadFile){
-        setUploadPicture.uploadFile(new File("src/test/resources/123.jpg"));
+    public void setUploadPicture (String pathFile){
+        setUploadPicture.uploadFile(new File(pathFile));
 
     }
     public void setCurrentAddress (String currentAddress){
@@ -101,9 +101,9 @@ public class RegistrationPage {
         $("#example-modal-sizes-title-lg").shouldHave(text(checkTable));
     }
 
-    public void checkForm (String checkForm){
-        $(".table-responsive").shouldHave(checkForm);
-    }
+//    public void checkForm (String filedName , String value){
+//        $(".table-responsive").parent().shouldHave(text(value));
+//    }
 
 
 }
