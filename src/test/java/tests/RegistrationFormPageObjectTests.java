@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegistrationFormPageObjectTests {
     //создали объект класса RegistrationPage с помощью оператора new
     RegistrationPage registrationPage = new RegistrationPage();
-    //создали приватный класс стринг со значением Vova
+    //создали приватный класс стринг со значениями
     private String
             firstName = "Vova",
             lastName = "Olegovich",
@@ -29,12 +29,14 @@ public class RegistrationFormPageObjectTests {
             day = "06",
             month = "July",
             year = "2010",
-            subjects = "Biology",
-            hobbiesWrapper = "Sports",
+
             pathFile = "src/test/resources/123.jpg",
             currentAddress = "Moscow",
             state = "Haryana",
             city = "Panipat";
+    private String[] subjects = new String[] {"Biology","Arts", "Maths", "History"};
+    private  String[] hobbies = new String[] {"Sports", "Reading", "Music"};
+
 
     //Аннотация @BeforeAll  используется для указания что эти методы
     // должны быть выполнены перед всеми @Test.
@@ -58,27 +60,27 @@ public class RegistrationFormPageObjectTests {
         registrationPage.setUserNumber(userNumber);
         registrationPage.setBirthDate(day,month,year);
         registrationPage.setSubjectsInput(subjects);
-        registrationPage.setHobbiesWrapper(hobbiesWrapper);
+        registrationPage.setHobbiesWrapper(hobbies);
         registrationPage.setUploadPicture(pathFile);
         registrationPage.setCurrentAddress(currentAddress);
         registrationPage.setState(state);
         registrationPage.setCity(city);
         registrationPage.submitForm();
+
+
         //Проверяем ожидаемый результат
         registrationPage.checkTable("Thanks for submitting the form");
+        registrationPage.checkForm("Student Name", firstName + " " + lastName  );
+        registrationPage.checkForm("Student Email", userEmail);
+        registrationPage.checkForm("Gender", userGender);
+        registrationPage.checkForm("Mobile", userNumber);
+        registrationPage.checkForm("Date of Birth", day+ " "+ month+ ","+ year);
+        registrationPage.checkForm("Subjects", subjects[0]+',' + ' '+subjects[1]+',' + ' '+subjects[2]+',' + ' '+subjects[3]);
+        registrationPage.checkForm("Hobbies", hobbies[0]+',' + ' '+hobbies[1]+',' + ' '+hobbies[2]);
+        registrationPage.checkForm("Picture", "123.jpg");
+        registrationPage.checkForm("Address", currentAddress);
+        registrationPage.checkForm("State and City", state+ " "+ city);
 
-                //shouldHave(text("Thanks for submitting the form")
 
-        //$("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-//        registrationPage
-//                .checkForm("Student Email " + "Vova@mail.ru")
-//                .checkForm("Gender " + "Male")
-//                .checkForm("Mobile " + "7123456789")
-//                .checkForm("Date of Birth " + "06 July,2010")
-//                .checkForm("Subjects " + "Biology")
-//                .checkForm("Hobbies " + "Sports")
-//                .checkForm("Picture " + "123.jpg")
-//                .checkForm("Address " + "Moscow")
-//                .checkForm("State and City " + "Haryana" + " " + "Panipat");
     }
 }

@@ -23,7 +23,7 @@ public class RegistrationPage {
             userNumberInput=$("#userNumber"),
             userBirthInput=$("#dateOfBirthInput"),
             userSubjectsInput=$("#subjectsInput"),
-            hobbiesWrapperInput=$("#hobbiesWrapper"),
+            hobbiesWrapperInput=$(".practice-form-wrapper #hobbiesWrapper"),
             setUploadPicture=$("#uploadPicture"),
             setCurrentAddressInput=$("#currentAddress"),
             setStateInput=$("#state"),
@@ -57,24 +57,27 @@ public class RegistrationPage {
         $(byText(gender)).click();
     }
 
-    public void setUserNumber (String userNumber) {
+    public void setUserNumber(String userNumber) {
         userNumberInput.setValue(userNumber);
     }
 
     //добавили переменую на выбор календаря
-    public void setBirthDate (String day, String month, String year){
+    public void setBirthDate(String day, String month, String year){
         $("#dateOfBirthInput").click();
         calendarComponent.setBirthDate(day,month,year);
     }
 
-    public void setSubjectsInput (String subjects){
-        userSubjectsInput.setValue(subjects).pressEnter();
+    public void setSubjectsInput(String[] subjects){
+        for (String subject : subjects) //циклы,перебор значения массива
+            userSubjectsInput.setValue(subject).pressEnter();
     }
-    public void setHobbiesWrapper (String hobbiesWrapper){
-        $(byText(hobbiesWrapper)).click();
+    public void setHobbiesWrapper(String[] hobbiesWrapper){
+        for (String hobbies : hobbiesWrapper)
+            hobbiesWrapperInput.setValue(hobbies).pressEnter();
+            hobbiesWrapperInput.$(byText("hobbies")).click();
     }
 
-    public void setUploadPicture (String pathFile){
+    public void setUploadPicture(String pathFile){
         setUploadPicture.uploadFile(new File(pathFile));
 
     }
@@ -82,13 +85,13 @@ public class RegistrationPage {
         setCurrentAddressInput.setValue(currentAddress);
     }
 
-    public void setState (String state){
+    public void setState(String state){
         $("#state").scrollTo();
         setStateInput.click();
         $(byText(state)).click();
     }
 
-    public void setCity (String city) {
+    public void setCity(String city) {
         setCityInput.click();
         $(byText(city)).click();
     }
@@ -101,9 +104,13 @@ public class RegistrationPage {
         $("#example-modal-sizes-title-lg").shouldHave(text(checkTable));
     }
 
-//    public void checkForm (String filedName , String value){
-//        $(".table-responsive").parent().shouldHave(text(value));
-//    }
+    public void checkForm(String label, String value) {
+        $(".table-responsive")// говорим где мы будем искать
+                .$(byText(label)) //находим строку с label
+                .parent() //говорим что бы мы перешли на уровень выше и искали необходимый елемент
+                .shouldHave(text(value)); //  в этой строке мы проверяем конкретное значение
+    }
+
 
 
 }
